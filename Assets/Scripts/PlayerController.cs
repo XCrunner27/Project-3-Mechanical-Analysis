@@ -7,19 +7,47 @@ public class PlayerController : MonoBehaviour
 {
     public ParticleSystem goldenParticles;
     public ParticleSystem afterGV;
-    void Update()
+    public Image defense;
+    public Image strength;
+    public Image goldenVowSpell;
+
+    public void Awake()
+    {
+        goldenVowSpell.enabled = false;
+        defense.enabled = false;
+        strength.enabled = false;
+    }
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             goldenParticles.Play();
-            //Play move animation
-            //turn on Golden Circle
-            //turn on Strength Power Up Sign
-            //turn on Defense Power Up Sign
-            //wait a little
-            //turn off Golden Circle
+            goldenVowSpell.enabled = true;
+            defense.enabled = true;
+            strength.enabled = true;
+            yield return new WaitForSeconds(2);
+            goldenVowSpell.enabled = false;
             afterGV.Play();
-            //wait for a little bit
+            yield return new WaitForSeconds(7);
+            afterGV.Stop();
+            defense.enabled = false;
+            strength.enabled = false;
         }
+    }
+
+    IEnumerator goldenCircleOff()
+    {
+        yield return new WaitForSeconds(2);
+        goldenVowSpell.enabled = false;
+    }
+    
+    
+    
+    IEnumerator turnPowerUpOff()
+    {
+        yield return new WaitForSeconds(6);
+        afterGV.Stop();
+        defense.enabled = false;
+        strength.enabled = false;
     }
 }

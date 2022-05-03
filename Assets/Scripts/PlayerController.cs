@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public Image strength;
     public Image goldenVowSpell;
 
+    public Animator animatorForMovement;
+
     public void Awake()
     {
         goldenVowSpell.enabled = false;
@@ -21,17 +23,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animatorForMovement.SetTrigger("Space Pressed");
+            
             goldenParticles.Play();
             goldenVowSpell.enabled = true;
             defense.enabled = true;
             strength.enabled = true;
-            yield return new WaitForSeconds(2);
-            goldenVowSpell.enabled = false;
             afterGV.Play();
-            yield return new WaitForSeconds(7);
-            afterGV.Stop();
-            defense.enabled = false;
-            strength.enabled = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            animatorForMovement.SetTrigger("Space Let Go");
         }
     }
 

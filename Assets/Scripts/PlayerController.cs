@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
             {
                 goldenVowSpell.enabled = true;
                 powerUpSound.Play();
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2);
                 defense.enabled = true;
                 strength.enabled = true;
                 goldenVowSpell.enabled = false;

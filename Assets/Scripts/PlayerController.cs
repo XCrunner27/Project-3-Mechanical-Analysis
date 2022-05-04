@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Image goldenVowSpell;
 
     public Animator animatorForMovement;
+    public AudioSource powerUpSound;
 
     public void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
             IEnumerator goldenCircleOff()
             {
                 goldenVowSpell.enabled = true;
+                powerUpSound.Play();
                 yield return new WaitForSeconds(3);
                 defense.enabled = true;
                 strength.enabled = true;
